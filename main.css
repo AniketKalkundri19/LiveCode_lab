@@ -1,0 +1,575 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body{
+  background: url("./img/back.jpg") no-repeat center center fixed ;
+  background-size: cover;
+  background-attachment: fixed;  /* Keeps background in place while scrolling */
+  margin: 0;
+  padding: 0;
+  
+}
+
+.roboto-body {
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+
+
+
+
+/*Navbar*/
+
+
+.nav-content{
+  border-bottom:2.5px solid rgb(191, 191, 191) !important ;
+}
+
+nav {
+  position: fixed;  /* Keeps it at the top */
+  top: 0;           /* Aligns to the top */
+  left: 0;          /* Aligns to the left */
+  width: 100%;      /* Full width */
+  background-color: white; /* Ensures visibility */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 3px !important;
+  padding-bottom: 3px;
+  padding-left: 3%;
+  padding-right: 8%;
+  font-size: 20px;
+ 
+  z-index: 1000; /* Ensures it stays above other elements */
+  backdrop-filter: blur(10px);
+}
+
+.logo{
+  color: #00ff84 ;
+  font-size: 40px;
+  
+}
+
+.logo > span {
+  color: black;
+  margin-right: 20px;
+}
+
+nav > h2 {
+  margin-right: 20px;
+}
+
+nav > u {
+  color: #c1c1c1;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block ;
+  padding: 10px 20px;
+}
+
+nav ul li button {
+  border: 0;
+  background:transparent ;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 28px;
+  padding: 5px 20px;
+  transition-duration: 750ms;
+}
+
+nav ul li button:hover, 
+button.active {  /* Add active class */
+  background:#00ff84 ;/* Slightly More Visible */
+  color: white;
+  transform : scale(1.05); /* Slight Scale Effect */
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+/* dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  right: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.dropdown-content a:hover {
+  background:#00ff84 ;/* Slightly More Visible */
+  color: white;
+  transform : scale(1.05); /* Slight Scale Effect */
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+/* ✅ Show Dropdown on Hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.profile-container > span { 
+  font-size: 25px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  padding: 5px 10px;
+  text-transform: capitalize;
+  
+}
+
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust spacing */
+}
+
+.profile-container img {
+  border-radius: 50%;
+ 
+}
+
+
+.profile-container a,
+.profile-container span {
+  font-size: 16px;
+  color: #ffffff ;
+  text-decoration: none;
+}
+
+
+#logout-btn #create-account{ 
+  display: hide;
+  
+}
+.dropdown-content  #logout-btn , #create-account {
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  display: block;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 10px 5px;
+  transition-duration: 750ms;
+}
+
+
+.profile-container img:hover #logout-btn:hover,
+.dropdown-content #logout-btn:hover , #create-account:hover {
+  
+  background: #00ff84; /* Slightly More Visible */
+  color: white;
+  transform: scale(1.05); /* Slight Scale Effect */
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+.profile-container > .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+
+/* landing-page */
+
+.landing-page {
+  position: fixed;
+  display: none ;  /* change it to flex  */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  scroll-behavior: none;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  color:white ;
+  padding: 20%;
+  animation : fadeIn 0.8s ease-in-out ;
+}
+
+
+.landing-page h1 {
+  font-size: 10vh;
+  margin-bottom: 5vh;
+  text-shadow: 
+      1px 1px 2px rgba(191, 191, 191, 0.758),  /* Light Glow */
+      4px 4px 12px rgba(0, 0, 0, 0.3); 
+  color: #00ff84;    
+  
+}
+
+.landing-page p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.landing-page #start-btn {
+  font-size: 20px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.54); /* Light Transparent White */
+  backdrop-filter: blur(10px); /* Glass Effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari Support */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle Border */
+  color: rgb(255, 255, 255);
+  border-radius: 50px;
+  padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer Shadow */
+  text-shadow: 
+      1px 1px 2px rgba(255, 255, 255, 0.6),  /* Light Glow */
+      4px 4px 12px rgba(0, 0, 0, 0.3); 
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.landing-page #start-btn:hover {
+  background:#00ff84 ;/* Slightly More Visible */
+  transform : scale(1.05); /* Slight Scale Effect */
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+
+
+.features {
+  background: rgba(255, 255, 255, 0.2); /* Subtle Glassmorphism Effect */
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+  width: 60%;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: rgb(255, 255, 255);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.features h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 
+    1px 1px 2px rgba(255, 255, 255, 0.6),
+    4px 4px 12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.features li::before {
+  content: "✅";
+  color: #00ff84;
+  font-size: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+/*ace*/
+.ace_editor {
+	font-size: 16px !important;
+  font-weight: bold !important; 
+  background:transparent ;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.8s ease-in-out;
+  
+}
+
+/* CodeUI */
+
+#ide-parent {
+  display: none ;   /*change it to block */
+  width: 92%;
+  height: auto;
+  border-radius: 1em;
+  overflow: hidden;
+  margin: auto;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+  margin-top: 5%;
+}
+
+
+#button-wrapper {
+  display: flex;
+  width: 100%;
+  height: 60px;
+}
+
+#button-wrapper button {
+  width: 25%;
+  border: none;
+  background: #0f0f0f;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #00ff84 ;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 20px;
+  outline: none;
+  transition-duration: 750ms;
+  
+}
+
+#button-wrapper button:hover {
+  background: #000;
+}
+
+#ide-container {
+  width: 100%;
+  height: 500px;
+  overflow: auto;
+}
+
+.panel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#html {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#css {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#js {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#result {
+  
+  width: 100%;
+  height: 100%;
+  background-color:rgb(0, 0, 0);
+  border: none;
+}
+
+
+
+
+
+
+
+
+/*About-page*/
+
+.about-section {
+  display: none; /* Change from none to flex */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 10%;
+  color: white;
+  text-align: center;
+  border-radius: 1em; /* Rounded Border */
+  width: 92%; /* Centered Box */
+  height: 70vh; /* Increased Height */
+  margin: 50px auto; /* Centering */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+
+.main-title {
+  font-size: 48px;
+  font-weight: bolder;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #00ff84;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.about-box {
+  flex: 1;
+  min-width: 300px;
+  padding: 30px;
+  border-radius: 1em;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+h2 {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* fade-effect */
+
+
+.footer {
+  position: fixed; 
+  display: flex;
+  align-items: center;  
+  justify-content: center; 
+  bottom: 0; 
+  left: 0;
+  right: 0;
+  color: rgb(255, 255, 255);
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 20px;
+  z-index: 10000; 
+}
+
+.inner-wrap {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner-wrap img {
+  width: 24px;
+  height: auto;
+}
+
+.inner-wrap a {
+  margin-left: 24px;
+}
+
+.icons-wrap {
+	display: flex;
+	align-items: center;
+}
+/* Styles for Login Button */
+
+
+.btn-block {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/*nav and footer background*/
+nav, .footer {
+  background: transparent;
+
+}
+
+/* glass-effect */
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent */
+  backdrop-filter: blur(5px); /* Blurred background */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  border-radius: 10px;
+}
+
+.mirror-effect {
+  transform: scaleY(-1); /* Flip vertically */
+  opacity: 0.4; /* Reduce opacity for realism */
+  filter: blur(5px); /* Soft blur for a natural effect */
+}
+
+.landing-page.glass-effect {
+  padding: 50px;
+}
+
+.footer.glass-effect {
+  backdrop-filter: blur(10px);
+}
+
+.navbar.glass-effect {
+  backdrop-filter: blur(15px);
+}
+
+
+.interface-letter {
+  font-size: 50px;
+  font-weight: bold;
+  color: #00ff84;
+  text-shadow: 3px 3px 5px rgba(0, 255, 132, 0.5), -3px -3px 5px rgba(0, 0, 0, 0.3);
+}
+

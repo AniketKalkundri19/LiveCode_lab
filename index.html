@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiveCode Lab</title>
+  <meta name="description" content="This is an online code editor for html css and javascript. ">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="">
+  <meta name="keywords" content="Live code editor, online code editor, live html editor, live css editor, live javascript editor">
+  <link rel="stylesheet" href="main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preload" href="your-image.jpg" as="image">
+<link rel="stylesheet" href="./auth.css">
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<link rel="icon" type="image/svg+xml" href="./img/logo-browser.svg">
+
+
+  
+</head>
+
+<body>
+
+   <!--Login & Sign-up-->
+
+ <div class="auth-container">
+
+  
+  <!-- Login Form -->
+  <div class="form-box login">
+    <img src="./img/logo-browser.svg" alt="Logo" class="form-logo">
+      <h2>Login</h2>
+      <form id="login-form">
+        
+          <input type="text" placeholder="Username" id="username" required  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$" 
+          title="Username must contain both letters and numbers">
+          <div class="password-container">
+            <input type="password" id="password" placeholder="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$">
+            <i class="toggle-password fa fa-eye"></i>
+        </div>
+        
+          <button type="submit" class="submit-btn">Login</button>
+          <p>Don't have an account? <span id="show-signup">Sign up</span></p>
+      </form>
+  </div>
+
+  <!-- Signup Form (Initially Hidden) -->
+  <div class="form-box signup" style="display: none;">
+    <img src="./img/logo-browser.svg" alt="Logo" class="form-logo">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <input type="text" placeholder="Username" id="username" required  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$" 
+        title="Username must contain both letters and numbers">
+          <input type="email" placeholder="Email" required>
+          <div class="password-container">
+            <input type="password" id="password" placeholder="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$">
+            <i class="toggle-password fa fa-eye"></i>
+        </div>
+        
+          <button type="submit" class="submit-btn">Sign Up</button>
+          <p>Already have an account? <span id="show-login">Login</span></p>
+      </form>
+  </div>
+</div>
+
+  <!-- navbar -->
+  <div class="nav-content">
+    <nav>
+      <u><h2 class="logo">LiveCode <span style="color: #fff;">Lab</span> </h2></u>
+      <ul>
+        <li><button id="home-btn" class="active">Home</button></li>
+        <li><button id="CodeUI-btn">CodeX</span></button></li>
+        <li><button id="About-btn">About</button></li>
+        <li>
+          <div class="dropdown">
+          <button class="dropbtn" style="display: none;">Download ▽</button>
+          <div class="dropdown-content">
+              <a href="#" onclick="downloadFile('html')">Download HTML</a>
+              <a href="#" onclick="downloadFile('css')">Download CSS</a>
+              <a href="#" onclick="downloadFile('js')">Download JS</a>
+          </div>
+      </div>
+    </li>
+   
+      </ul>
+      <div class="profile-container">
+        <span id="greeting">Sign In</span>
+        <div class="dropdown">
+        <img src="./img/profile.png" height="50px" width="50px" alt="Profile" id="profile-img">
+        <div class="dropdown-content">
+          <a href="#" id="create-account" onclick="toggleAuth()">Create Account</a>
+          <a href="#" id="logout-btn" onclick="logout()" style="display: none;">Logout</a>
+        </div>
+         </div>   
+        </div>
+    </div>
+    </nav>
+  </div>
+  
+
+  <!-- homepage -->
+
+<!--Landing-page-->
+
+<div class="landing-page glass-effect">
+  <h1>Welcome to LiveCode Lab</h1>
+  <p>The ultimate online code editor where you can write, edit, and run HTML, CSS, and JavaScript dynamically—without reloading the page!</p>
+  
+  <div class="features">
+    <h2>Why Choose LiveCode Lab?</h2>
+    <ul>
+      <li>🚀 Real-time Code Execution</li>
+      <li>🎨 Live Preview Without Refresh</li>
+      <li>⚡ Instant Feedback on Your Code</li>
+      <li>🌙 Dark Mode Support</li>
+      <li>📂 Download Your Code Anytime</li>
+    </ul>
+  </div>
+  
+  <button id="start-btn">🚀 Code & Create...➡️</button>
+</div>
+
+
+
+  <div class="header-wrap">
+    <br>
+    <br>
+    <br>
+  </div>
+ 
+  <div id="ide-parent">
+    <div id="button-wrapper">
+      <button onclick="switchPanel(0)">HTML</button>
+      <button onclick="switchPanel(1)">CSS</button>
+      <button onclick="switchPanel(2)">JS</button>
+      <button onclick="runEdit(3)">Result</button>
+    </div>
+ 
+    <div id="ide-container">
+      <div class="panel-wrapper">
+        <div id="html">
+&lt;!--predefined html, but editable--&gt;
+
+&lt;div class="circle"&gt;
+	click me!
+&lt;/div&gt;
+
+        </div>
+      </div>
+      <div class="panel-wrapper">
+        <div id="css">
+/*predefined CSS, but editable*/
+
+.circle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background: crimson;
+	margin: auto;
+	margin-top: 50px;
+	transition-duration: 300ms;
+}
+        </div>
+      </div>
+      <div class="panel-wrapper">
+        <div id="js">
+//predefined JavaScript, but editable
+
+var circle = document.querySelector(".circle");
+var bool = false;
+
+circle.addEventListener('click', function() {
+	if (!bool) {
+		circle.style.background = "coral";
+		bool = true;
+	} else {
+		circle.style.background = "crimson";
+		bool = false;
+	}
+});
+        </div>
+      </div>
+      <div class="panel-wrapper" id="result-section">
+        <iframe id="result" style="display: none;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- about-page -->
+
+  <section id="about" class="about-section glass-effect ">
+    <h1 class="main-title">About Us</h1>
+    
+    <div class="container">
+        <div class="about-box left-box">
+            <h2>Technologies We Use</h2>
+            <ul>
+                <li>🔥 HTML5, CSS3, JavaScript</li>
+                <li>🚀 Ace Editor for Live Coding</li>
+                <li>🍃 MongoDB - NoSQL Database</li>
+                <li>🟢 Node.js - JavaScript Runtime</li>
+                <li>⚡ Express.js - Lightweight Web Framework</li>
+            </ul>
+        </div>
+
+        <div class="about-box right-box">
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>✅ Real-time Code Execution</li>
+                <li>✅ User-friendly Interface</li>
+                <li>✅ Beginner & Pro Friendly</li>
+                <li>✅ Dark Theme Support</li>
+                <li>✅ Secure User Authentication</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+  <div class="footer">
+    <div class="inner-wrap">
+      <p>&#169; LiveCode Lab (Group ID: G-3)</p>
+      <div class="icons-wrap">
+       
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js" type="text/javascript"
+    charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+  <script src="app.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./database.js"></script>
+</div>
+</body>
+
+</html>
