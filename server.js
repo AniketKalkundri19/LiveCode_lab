@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path = require('path');
+
 
 // Initialize Express App
 const app = express();
@@ -61,6 +63,13 @@ app.post("/login", async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "❌ Error logging in" });
   }
+});
+
+// Serve static files from the project root
+app.use(express.static(path.join(__dirname, '../')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 // Start Server
