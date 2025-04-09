@@ -2,8 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const path = require('path');
-
+const path = require("path");
 
 // Initialize Express App
 const app = express();
@@ -11,7 +10,7 @@ const PORT = 5000;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Handles JSON requests
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to MongoDB Atlas
@@ -22,28 +21,32 @@ mongoose.connect(MONGO_URI)
 
 // User Schema
 const UserSchema = new mongoose.Schema({
-  username: String,
+  username: { type: String, required: true, unique: true },
   email: String,
-  password: String
+  password: String, // Stored in plaintext for now (not ideal for production)
 });
 const User = mongoose.model("User", UserSchema);
 
-// Register (Signup) Route
+// Register Route
 app.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if user exists
-    const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ error: "Username already exists!" });
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "All fields are required!" });
+    }
 
-    // Save new user
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ error: "Username already exists!" });
+    }
+
     const newUser = new User({ username, email, password });
     await newUser.save();
     res.json({ message: "✅ User Registered Successfully!", username });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "❌ Error saving user" });
+    res.status(500).json({ error: "❌ Error registering user" });
   }
 });
 
@@ -52,11 +55,14 @@ app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Validate user
-    const user = await User.findOne({ username, password });
-    if (!user) {
-        return res.status(401).json({ error: "Invalid credentials" });
-    } 
+    if (!username || !password) {
+      return res.status(400).json({ error: "Both username and password are required!" });
+    }
+
+    const user = await User.findOne({ username });
+    if (!user || user.password !== password) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
 
     res.json({ message: "✅ Login Successful!", username });
   } catch (err) {
@@ -65,11 +71,11 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Serve static files from the project root
-app.use(express.static(path.join(__dirname, './')));
+// Serve static files from project root (make sure index.html exists)
+app.use(express.static(path.join(__dirname, "./")));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './index.html'));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./index.html"));
 });
 
 // Start Server
