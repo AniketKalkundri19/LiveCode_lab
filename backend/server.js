@@ -1,21 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const path = require('path');
-
+const path = require("path");
 
 // Initialize Express App
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://aniketkalkundri:Aniket%4022@livecodelabcluster.ptjlp.mongodb.net/LiveCode_Lab?retryWrites=true&w=majority";
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Handles JSON requests
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Connect to MongoDB Atlas
-const MONGO_URI = "mongodb+srv://aniketkalkundri:Aniket%4022@livecodelabcluster.ptjlp.mongodb.net/LiveCode_Lab?retryWrites=true&w=majority";
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("✅ MongoDB Connected!"))
   .catch(err => console.error("❌ MongoDB Connection Error:", err));
@@ -24,26 +22,31 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String
+  password: String,
 });
 const User = mongoose.model("User", UserSchema);
 
-// Register (Signup) Route
+// Register Route
 app.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if user exists
-    const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ error: "Username already exists!" });
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
 
-    // Save new user
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ error: "Username already exists!" });
+    }
+
     const newUser = new User({ username, email, password });
     await newUser.save();
-    res.json({ message: "✅ User Registered Successfully!", username });
+
+    res.status(201).json({ message: "✅ User Registered Successfully!", username });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "❌ Error saving user" });
+    console.error("Register Error:", err);
+    res.status(500).json({ error: "❌ Server Error while registering" });
   }
 });
 
@@ -52,24 +55,27 @@ app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Validate user
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password required" });
+    }
+
     const user = await User.findOne({ username, password });
     if (!user) {
-        return res.status(401).json({ error: "Invalid credentials" });
-    } 
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
 
     res.json({ message: "✅ Login Successful!", username });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "❌ Error logging in" });
+    console.error("Login Error:", err);
+    res.status(500).json({ error: "❌ Server Error while logging in" });
   }
 });
 
-// Serve static files from the project root
-app.use(express.static(path.join(__dirname, '../')));
+// Serve static files from the root directory (where index.html is)
+app.use(express.static(path.join(__dirname, "../")));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
 // Start Server
