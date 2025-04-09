@@ -1,21 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const path = require('path');
-
+const path = require("path");
 
 // Initialize Express App
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Handles JSON requests
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json()); // Built-in middleware for JSON parsing
+app.use(express.urlencoded({ extended: true })); // Built-in middleware for URL-encoded data
 
 // Connect to MongoDB Atlas
-const MONGO_URI = "mongodb+srv://aniketkalkundri:Aniket%4022@livecodelabcluster.ptjlp.mongodb.net/LiveCode_Lab?retryWrites=true&w=majority";
+const MONGO_URI = "your_mongo_uri_here";
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("✅ MongoDB Connected!"))
   .catch(err => console.error("❌ MongoDB Connection Error:", err));
@@ -55,8 +53,8 @@ app.post("/login", async (req, res) => {
     // Validate user
     const user = await User.findOne({ username, password });
     if (!user) {
-        return res.status(401).json({ error: "Invalid credentials" });
-    } 
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
 
     res.json({ message: "✅ Login Successful!", username });
   } catch (err) {
@@ -65,11 +63,12 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Serve static files from the project root
-app.use(express.static(path.join(__dirname, '../')));
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, "../public")));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+// Route to serve the main index.html file
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // Start Server
