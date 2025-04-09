@@ -63,6 +63,8 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Serve static files from the project root
+app.use(express.static(path.join(__dirname, '../')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
