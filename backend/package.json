@@ -9,7 +9,7 @@
     "mongoose": "^8.10.1"
   },
   "scripts": {
-  "start": "concurrently \"node server.js\" \"start ../index.html\""
+  "start": "node server.js"
 }
 }
 
