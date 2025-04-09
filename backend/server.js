@@ -1,16 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const path = require("path");
+const bodyParser = require("body-parser");
+const path = require('path');
+
 
 // Initialize Express App
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Built-in middleware for JSON parsing
-app.use(express.urlencoded({ extended: true })); // Built-in middleware for URL-encoded data
+app.use(express.json()); // Handles JSON requests
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to MongoDB Atlas
 const MONGO_URI = "mongodb+srv://aniketkalkundri:Aniket%4022@livecodelabcluster.ptjlp.mongodb.net/LiveCode_Lab?retryWrites=true&w=majority";
@@ -53,8 +55,8 @@ app.post("/login", async (req, res) => {
     // Validate user
     const user = await User.findOne({ username, password });
     if (!user) {
-      return res.status(401).json({ error: "Invalid credentials" });
-    }
+        return res.status(401).json({ error: "Invalid credentials" });
+    } 
 
     res.json({ message: "✅ Login Successful!", username });
   } catch (err) {
@@ -63,12 +65,11 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, "../")));
+// Serve static files from the project root
+app.use(express.static(path.join(__dirname, '../')));
 
-// Route to serve the main index.html file
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 // Start Server
