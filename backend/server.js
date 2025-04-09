@@ -64,11 +64,11 @@ app.post("/login", async (req, res) => {
 });
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../")));
 
 // Route to serve the main index.html file
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
 // Start Server
