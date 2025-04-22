@@ -74,7 +74,12 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
 
-app.get('/', (req, res) => {
-  res.send('LiveCode Lab API is running 🚀');
+
+
+const path = require("path");
+
+// Serve index.html on root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
