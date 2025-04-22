@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       try {
-        let response = await fetch("http://localhost:5000/register", {
+        let response = await fetch("https://livecode-lab.onrender.com/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, email, password })
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       try {
-        const response = await fetch("http://localhost:5000/login", {
+        const response = await fetch("https://livecode-lab.onrender.com/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password }),
