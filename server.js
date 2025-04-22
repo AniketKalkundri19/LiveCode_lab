@@ -66,7 +66,10 @@ app.post("/login", async (req, res) => {
 
 const path = require("path");
 
-// Serve index.html on root route
+// Serve static files from current directory
+app.use(express.static(__dirname));
+
+// Route to serve index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
