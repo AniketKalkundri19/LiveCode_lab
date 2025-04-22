@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       try {
-        let response = await fetch("https://livecode-lab.onrender.com/", {
+        let response = await fetch("https://livecode-lab.onrender.com/#", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, email, password })
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       try {
-        const response = await fetch("https://livecode-lab.onrender.com/", {
+        const response = await fetch("https://livecode-lab.onrender.com/#", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password }),
