@@ -64,9 +64,11 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Default Route (for Render)
-app.get('/', (req, res) => {
-  res.send('LiveCode Lab API is running 🚀');
+const path = require("path");
+
+// Serve index.html on root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Start Server
@@ -76,10 +78,5 @@ app.listen(PORT, () => {
 
 
 
-const path = require("path");
 
-// Serve index.html on root route
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
 
