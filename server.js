@@ -63,7 +63,17 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Default Route (for Render)
+app.get('/', (req, res) => {
+  res.send('LiveCode Lab API is running 🚀');
+});
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
+
+app.get('/', (req, res) => {
+  res.send('LiveCode Lab API is running 🚀');
+});
+
