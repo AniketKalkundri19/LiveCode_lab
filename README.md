@@ -1,64 +1,109 @@
-LiveCode Lab 🚀
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiveCode Lab - README</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+      background-color: #f9f9f9;
+      color: #24292f;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: 0.3em;
+    }
+    code {
+      background-color: #f3f3f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    pre {
+      background-color: #f6f8fa;
+      padding: 16px;
+      overflow: auto;
+      border-radius: 6px;
+    }
+    a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
 
-LiveCode Lab is a real-time coding platform designed for both beginners and professionals. It allows users to write, execute, and test code instantly with a user-friendly interface and seamless authentication.
+  <h1>🚀 LiveCode Lab</h1>
 
-LiveLink : https://livecode-lab.onrender.com
+  <p>
+    LiveCode Lab is a real-time coding platform designed for both beginners and professionals. 
+    It allows users to write, execute, and test code instantly with a user-friendly interface and seamless authentication.
+  </p>
 
-Features 🌟
+  <p>
+    <strong>🔗 Live Link:</strong> <a href="https://livecode-lab.onrender.com" target="_blank">https://livecode-lab.onrender.com</a>
+  </p>
 
-✅ Real-time Code Execution
+  <h2>🌟 Features</h2>
+  <ul>
+    <li>✅ Real-time Code Execution</li>
+    <li>✅ User Authentication (Sign-up/Login with JWT)</li>
+    <li>✅ MongoDB Atlas Integration</li>
+    <li>✅ Dark Mode Support</li>
+    <li>✅ Beginner & Pro Friendly Interface</li>
+    <li>✅ Secure & Scalable</li>
+  </ul>
 
-✅ User Authentication (Sign-up/Login with JWT)
+  <h2>🛠️ Tech Stack</h2>
+  <ul>
+    <li><strong>Frontend:</strong> HTML, CSS, JavaScript</li>
+    <li><strong>Backend:</strong> Node.js, Express.js</li>
+    <li><strong>Database:</strong> MongoDB Atlas</li>
+    <li><strong>Authentication:</strong> JWT (JSON Web Token)</li>
+  </ul>
 
-✅ MongoDB Atlas Integration
+  <h2>🏗️ Installation & Setup</h2>
+  <p>Clone the repository:</p>
+  <pre><code>git clone https://github.com/your-username/LiveCode_lab.git
+cd LiveCode_lab</code></pre>
 
-✅ Dark Mode Support
+  <p>Install dependencies:</p>
+  <pre><code>npm install</code></pre>
 
-✅ Beginner & Pro Friendly Interface
+  <p>Create a <code>.env</code> file and add:</p>
+  <pre><code>MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key</code></pre>
 
-✅ Secure & Scalable
+  <p>Start the server:</p>
+  <pre><code>npm start</code></pre>
 
-Tech Stack 🛠️
+  <h2>🌍 Deployment</h2>
+  <p>
+    LiveCode Lab can be deployed using platforms like <strong>Render</strong>, <strong>Vercel</strong>, or <strong>Railway</strong>.
+    Ensure your <code>.env</code> variables are properly configured in the hosting environment.
+  </p>
 
-Frontend: HTML, CSS, JavaScript
+  <h2>🤝 Contributing</h2>
+  <p>
+    Feel free to fork this repository and contribute to the project. 
+    Create a pull request with your changes!
+  </p>
 
-Backend: Node.js, Express.js
+  <h2>📜 License</h2>
+  <p>This project is licensed under the <strong>MIT License</strong>.</p>
 
-Database: MongoDB Atlas
+  <p>🚀 <strong>Happy Coding!</strong></p>
 
-Authentication: JWT (JSON Web Token)
-
-Installation & Setup 🏗️
-
-Clone the repository:
-
-git clone https://github.com/your-username/LiveCode_lab.git
-cd LiveCode_lab
-
-Install dependencies:
-
-npm install
-
-Create a .env file and add:
-
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-
-Start the server:
-
-npm start
-
-Deployment 🌍
-
-LiveCode Lab can be deployed using platforms like Render, Vercel, or Railway. Ensure your .env variables are properly configured in the hosting environment.
-
-Contributing 🤝
-
-Feel free to fork this repository and contribute to the project. Create a pull request with your changes!
-
-License 📜
-
-This project is licensed under the MIT License.
-
-🚀 Happy Coding!
-
+</body>
+</html>
